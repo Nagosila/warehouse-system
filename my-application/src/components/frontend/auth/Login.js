@@ -69,15 +69,15 @@ const loginSubmit=(event)=>{
                             <div className='card-body'>
                                   
                                       <div className='form-group mb3'></div>
-                                      <label>Email ID</label>
-          <input type='email' name='email' onChange={handleInput} value={loginInput.email} className='form-control' />
+           <label>Email ID</label>
+          <input type="email" id="email" name="email" onChange={handleInput} value={loginInput.email} className='form-control' />
           <span>{loginInput.error_list.email}</span>
                             </div>
                             <div className='card-body'>
                                   
                                       <div className='form-group mb3'></div>
                                       <label>Password</label>
-         <input type='password  ' name='password' onChange={handleInput} value={loginInput.password} className='form-control' />
+         <input type="password" id="password" name="password" onChange={handleInput} value={loginInput.password} className='form-control' />
          <span>{loginInput.error_list.password}</span>                    
                             </div>
                             <div className='form-group mb-3'>
