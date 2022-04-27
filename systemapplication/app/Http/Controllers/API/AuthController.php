@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function register (Request $request){
        $validator=Validator::make($request->all(),[
            'name'=> 'required|max:191',
-           'email'=> '',
+           'email'=> 'required|email|max:191',
            'password'=> 'required|min:8',
        ]);
        if($validator->fails())
@@ -47,8 +47,8 @@ class AuthController extends Controller
     {
         $validator=Validator::make($request->all(),[
            
-            'email'=> '',
-            'password'=> 'required|min:8',
+            'email'=>'required|email|max:191',
+            'password'=>'required|min:8',
         ]);
         if($validator->fails())
         {

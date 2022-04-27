@@ -12,16 +12,16 @@ function Register() {
         password:'',
         error_list:[],
  });
-      const handleInput = (e)=>{    
+      const handleInput = (e) => {    
           e.persist();
           setRegister({...registerInput,[e.target.name]:e.target.value });
       }
-    const registerSubmit = (e)=>{
+    const registerSubmit = (e) => {
              e.preventDefault();
-             const data={
+             const data = {
                  name:registerInput.name,
-                 email:registerInput.name,
-                 password:registerInput.name,
+                 email:registerInput.email,
+                 password:registerInput.password,
              }
              axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('api/register',data).then(res=>{
@@ -30,7 +30,7 @@ function Register() {
                localStorage.setItem('auth_Token',res.data.Token);
               localStorage.setItem('auth_name',res.data.username);
               swal("Success", res.data.message,"success");
-              console.log(res.data.username);
+             
               history.push('/');
         
           }
@@ -72,7 +72,7 @@ function Register() {
                                   
                                       <div className='form-group mb3'></div>
                                       <label>Email ID</label>
-                                      <input type='' name='email'onChange={handleInput} value={registerInput.email} className='form-control' />                      
+                                      <input type='email' name='email'onChange={handleInput} value={registerInput.email} className='form-control' />                      
                                       <span>{registerInput.error_list.email}</span>
                             </div>
                             <div className='card-body'>
