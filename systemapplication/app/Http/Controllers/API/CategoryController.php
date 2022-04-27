@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {   
 
     
-    $category = Category::orderBy('updated_at')->get();
-        return response() -> json
-        (['status' => 400, 'Category' => $category]);
+   $category = Category::all();
+    return response()->json([
+     'status'=>200,
+     'category'=>200,
+   ]);
   
     
   }
