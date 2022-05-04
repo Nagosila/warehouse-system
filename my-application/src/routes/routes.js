@@ -7,7 +7,7 @@ const routes = [
 {path:'/admin/dashboard',exact:true,name:'Dashboard',components: Dashboard},
 {path:'/admin/profile',exact:true,name:'Profile',components: Profile},
 {path:'/admin/add-category',exact:true,name:'Category', components: Category},
-{path:'/admin/view-category',exact:true,name:'ViewCategory', components: ViewCategory},   
+{path:'/admin/view-category',exact:true,name: 'ViewCategory', components: ViewCategory},   
 ];
 
 

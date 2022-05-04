@@ -1,21 +1,25 @@
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import React, {useEffect,useState} from 'react'
-function ViewCategory() {
+
+export default function ViewCategory() {
  
   const [loading, setLoading] = useState(true)
-  const [categorylist, setCategorylist] = useState([])
+  const [categorylist, setCategorylist] = useState([true])
 
   useEffect(() => {
-    axios.get('api/view-category').then(res =>{
-                                           
-             if(res.status === 200)
+      axios.get('api/view-category').then(res=>{
+        
+        if(res.data.status===200)              
              {
                setCategorylist(res.data.category)
+               
+          
              }
              setLoading(false);
+             
     });
- 
+   
 }, []);
 
 
@@ -26,16 +30,16 @@ if(loading)
         }
         else
         {
-              viewcategory_HTMLTABLE =
-              categorylist.map( (item) => {
+          
+          categorylist.map( (item) => {
                   return(
-                    <tr key={item.id}>
-                     <td>{item.id}</td>
-                     <td>{item.name}</td>
-                     <td>{item.slug}</td>
-                     <td>{item.status}</td>
+                    <tr key={categorylist.id}>
+                     <td>{categorylist.id}</td>
+                     <td>{categorylist.name}</td>
+                     <td>{categorylist.slug}</td>
+                     <td>{categorylist.status}</td>
                      <td>
-                         <Link to={`edit-category/${item.id}`} className='btn btn-success btn-sm'>Edit</Link>
+                         <Link to={`edit-category/${categorylist.id}`} className='btn btn-success btn-sm'>Edit</Link>
                      </td>
                      <td>
                          <button type="button" className="btn btn-danger btn-sm">Delete</button>
@@ -68,7 +72,7 @@ if(loading)
                     </tr>
                 </thead>
                 <tbody>
-               {viewcategory_HTMLTABLE}
+               { viewcategory_HTMLTABLE}
                 </tbody>
           </table>
 
@@ -78,4 +82,3 @@ if(loading)
   )
 }
 
-export default ViewCategory;
