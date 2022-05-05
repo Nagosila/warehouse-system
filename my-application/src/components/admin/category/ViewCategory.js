@@ -6,11 +6,12 @@ export default function ViewCategory() {
  
   const [loading, setLoading] = useState(true)
   const [categorylist, setCategorylist] = useState([true])
-
+   
   useEffect(() => {
       axios.get('api/view-category').then(res=>{
-        
-        if(res.data.status===200)              
+       
+        if(res.data.status===200)  
+              
              {
                setCategorylist(res.data.category)
                
@@ -28,11 +29,15 @@ if(loading)
         {
             return <h4>Loading...</h4>
         }
+        
         else
         {
-          
-          categorylist.map( (item) => {
+         
+          viewcategory_HTMLTABLE =
+       console.log( (categorylist) => {
+        
                   return(
+                    
                     <tr key={categorylist.id}>
                      <td>{categorylist.id}</td>
                      <td>{categorylist.name}</td>
@@ -50,6 +55,7 @@ if(loading)
                  
               });
         }
+               
 
   return (
 <div className='container PX-4'>
