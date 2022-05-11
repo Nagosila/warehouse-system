@@ -12,14 +12,11 @@ class CategoryController extends Controller
   public function index(Request $request)
   {   
 
-    
-   $category = Category::all();
-    return response()->json([
-     'status'=>200,
-     'category'=>200,
-   ]);
+    $category = Category::all(); 
+    return $category;
+ 
   
-    
+ 
   }
 
      
@@ -47,7 +44,7 @@ class CategoryController extends Controller
          $category ->meta_keyword = $request->input('meta_keyword');
          $category ->meta_descrip = $request->input('meta_descrip');
          $category ->slug = $request->input('slug');
-         $category ->slug = $request->input('name');
+         $category ->name = $request->input('name');
          $category ->description = $request->input('description');
          $category ->status = $request->input('status') == true ? '1':'0';
          $category ->save();
