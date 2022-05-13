@@ -13,36 +13,50 @@ export default function ViewCategory() {
         if(res.status === 200)  
               
              {
-               setCategorylist(res.data);
-              
-               setLoading(false);
-                     
-                     
+               setCategorylist(res.data)
+               
+          
              }
-            
-            
-            
+             setLoading(false);
+             
     });
    
 }, []);
 
 
-const viewcategory_HTMLTABLE = categorylist && categorylist.length && !loading 
-  ? categorylist.map ((item) => (
-    <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.slug}</td>
-        <td>{item.status}</td>
-        <td>
-            <Link to={`edit-category/${item.id}`} className='btn btn-success btn-sm'>Edit</Link>
-        </td>
-        <td>
-            <button type="button" className="btn btn-danger btn-sm">Delete</button>
-        </td>
-    </tr>
-  )) : <tr><td><h4> Loading...</h4></td></tr>;
-  
+var viewcategory_HTMLTABLE = "";
+if(loading)
+        {
+            return <h4>Loading...</h4>
+        }
+        
+        else
+        {
+         
+          viewcategory_HTMLTABLE =
+       categorylist.map( (item) => {
+        
+                  return(
+                    
+                    <tr key={item.id}>
+                     <td>{item.id}</td>
+                     <td>{item.name}</td>
+                     <td>{item.slug}</td>
+                     <td>{item.status}</td>
+                     <td>
+                         <Link to={`edit-category/${item.id}`} className='btn btn-success btn-sm'>Edit</Link>
+                     </td>
+                     <td>
+                         <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                     </td>
+
+                    </tr>
+                  )
+                 
+              });
+        } 
+               
+        console.log(categorylist);
   return (
 <div className='container PX-4'>
      <div className='card '>
