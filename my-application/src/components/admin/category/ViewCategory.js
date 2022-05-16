@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import React, {useEffect,useState} from 'react'
-
+import swal from 'sweetalert';
 export default function ViewCategory() {
  
   const [loading, setLoading] = useState(true)
@@ -32,7 +32,28 @@ if(loading)
         
         else
         {
-         
+         const deleteCategory =(event,id) => {
+             event.preventDefault();
+
+             const thisClicked = event.currentTarget;
+             thisClicked.innerText = "Deleting";
+
+
+             axios.delete(`/api/delete-category/${id}`).then(res=>{
+               if(res.data.status === 200)
+               {
+                swal("Success", res.data.message,"success");
+                thisClicked.closest("tr").remove();
+               }
+               else if (res.data.status === 404)
+               {
+                swal("Success", res.data.message,"success");
+                thisClicked.innerText = "Delete";
+               }
+               
+             });
+
+         }
           viewcategory_HTMLTABLE =
        categorylist.map( (item) => {
         
@@ -42,12 +63,12 @@ if(loading)
                      <td>{item.id}</td>
                      <td>{item.name}</td>
                      <td>{item.slug}</td>
-                     <td>{item.status}</td>
+                     
                      <td>
                          <Link to={`edit-category/${item.id}`} className='btn btn-success btn-sm'>Edit</Link>
                      </td>
                      <td>
-                         <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                         <button type="button" onClick={ (event) => deleteCategory(event, item.id) }className="btn btn-danger btn-sm">Delete</button>
                      </td>
 
                     </tr>
@@ -72,7 +93,6 @@ if(loading)
                         <th>ID</th>
                         <th>Name</th>
                         <th>Slug</th>
-                        <th>Status</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>

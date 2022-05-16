@@ -66,7 +66,7 @@ function Category() {
                 } )
               }
     <form onSubmit={submitCategory} id="CATEGORY_FORM">
-      
+
   <ul className="nav nav-tabs" id="myTab" role="tablist">
   <li className="nav-item" role="presentation">
     <button className="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
@@ -97,10 +97,7 @@ function Category() {
              <textarea name='descrip' onChange={handleInput} value={categoryInput.descrip} className='form-control'></textarea>
          </div>
 
-         <div className='form-group mb-3'>
-             <label>Status</label>
-             <input type='checkbox' name='status' onChange={handleInput} value={categoryInput.status} /> Status 0=shown/1=hidden
-         </div>
+        
 
          
   </div>
