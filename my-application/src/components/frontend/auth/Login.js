@@ -33,7 +33,7 @@ const loginSubmit=(event)=>{
             swal("Success", res.data.message,"success");
             console.log(res.data.username);
 
-            if(res.data.role === 'admin')
+            if(res.data.role === '')
             {
                 history.push('/admin/dashboard');
             }
